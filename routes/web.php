@@ -21,4 +21,12 @@ Auth::routes(['register' => false]);
 
 Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard');
+    Route::group(['prefix' => 'clientes'], function () {
+        Route::get('/', 'ClienteController@index')->name('dashboard.clientes.index');
+        Route::get('/create', 'ClienteController@create')->name('dashboard.clientes.create');
+        Route::post('/store', 'ClienteController@store')->name('dashboard.clientes.store');
+        Route::get('/edit/{id}', 'ClienteController@edit')->name('dashboard.clientes.edit');
+        Route::put('/update/{id}', 'ClienteController@update')->name('dashboard.clientes.update');
+        Route::delete('/delete/{id}', 'ClienteController@delete')->name('dashboard.clientes.delete');
+    });
 });
