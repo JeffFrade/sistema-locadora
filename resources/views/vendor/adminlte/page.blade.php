@@ -32,6 +32,8 @@
         @endif
 
         {{-- Content Wrapper --}}
+        @include('util.success')
+        @include('util.exception')
         @empty($iFrameEnabled)
             @include('adminlte::partials.cwrapper.cwrapper-default')
         @else

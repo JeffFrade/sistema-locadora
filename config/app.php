@@ -109,7 +109,7 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'pt_BR',
 
     /*
     |--------------------------------------------------------------------------
@@ -181,7 +181,9 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        // 'Example' => App\Facades\Example::class,
+        'PaginateHelper' => App\Helpers\PaginateHelper::class,
+        'StringHelper' => App\Helpers\StringHelper::class,
+        'DateHelper' => App\Helpers\DateHelper::class,
     ])->toArray(),
 
 ];

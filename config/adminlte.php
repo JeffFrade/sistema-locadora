@@ -313,6 +313,12 @@ return [
             'icon'        => 'fas fa-fw fa-tachometer-alt',
             'active'      => ['/dashboard']
         ],
+        [
+            'text'        => 'Clientes',
+            'url'         => 'dashboard/clientes',
+            'icon'        => 'fas fa-fw fa-users',
+            'active'      => ['/dashboard/clientes', '/dashboard/clientes*', '/dashboard/clientes?*']
+        ],
         /*[
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
