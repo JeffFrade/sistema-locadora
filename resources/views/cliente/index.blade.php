@@ -52,7 +52,7 @@
                                     <td>{{ $cliente->nome }}</td>
                                     <td>{{ StringHelper::mask($cliente->cpf, '###.###.###-##') }}</td>
                                     <td>{{ $cliente->contato }}</td>
-                                    <td>{{ DateHelper::formatDate($cliente->data_nascimento) }}</td>
+                                    <td>{{ DateHelper::formatDateBr($cliente->data_nascimento) }}</td>
                                     <td>
                                         @if ($cliente->status)
                                             <div class="badge badge-success label">Ativo</div>

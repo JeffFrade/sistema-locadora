@@ -28,4 +28,9 @@ class StringHelper
 
         return $masked;
     }
+
+    public static function clearString(string $value = '')
+    {
+        return preg_replace('/\D+/i', '', $value);
+    }
 }

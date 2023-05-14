@@ -26,10 +26,16 @@ class ClienteService
         $cliente = $this->clienteRepository->findFirst('id', $id);
 
         if (empty($cliente)) {
-            throw new ClienteNotFoundException('Cliente inexistente');
+            throw new ClienteNotFoundException('Cliente inexistente.');
         }
 
         return $cliente;
+    }
+
+    public function update(array $data, int $id)
+    {
+        $this->edit($id);
+        $this->clienteRepository->update($data, $id);
     }
 
     public function delete(int $id)

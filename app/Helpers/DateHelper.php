@@ -6,9 +6,14 @@ use Carbon\Carbon;
 
 class DateHelper
 {
-    public static function formatDate(string $date, string $format = 'd/m/Y')
+    public static function formatDateBr(string $date)
     {
         return Carbon::parse($date)
-            ->format($format);
+            ->format('d/m/Y');
+    }
+
+    public static function formatDateEn(string $date)
+    {
+        return implode('-', array_reverse(explode('/', $date)));
     }
 }
