@@ -97,6 +97,6 @@
 @section('js')
     <script src="{{ asset('js/delete-modal.js') }}"></script>
     <script type="text/javascript">
-        deleteModal('colors/delete/');
+        deleteModal('clientes/delete/');
     </script>
 @stop

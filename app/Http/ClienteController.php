@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Core\Support\Controller;
+use App\Exceptions\ClienteNotFoundException;
 use App\Services\ClienteService;
 use Illuminate\Http\Request;
 
@@ -45,6 +46,12 @@ class ClienteController extends Controller
 
     public function delete(int $id)
     {
+        try {
+            $this->clienteService->delete($id);
 
+            return $this->successResponse('Cliente excluído com sucesso!');
+        } catch (ClienteNotFoundException $e) {
+            return $this->errorResponse($e);
+        }
     }
 }

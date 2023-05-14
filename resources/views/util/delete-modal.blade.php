@@ -9,7 +9,7 @@
             <p>Deseja excluir o item selecionado?</p>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-primary btn-del"><i class="fa fa-check"></i>&nbsp; Sim</button>
+            <button type="button" class="btn btn-success btn-del"><i class="fa fa-check"></i>&nbsp; Sim</button>
             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp; Não</button>
         </div>
       </div>
