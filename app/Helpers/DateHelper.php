@@ -11,9 +11,4 @@ class DateHelper
         return Carbon::parse($date)
             ->format('d/m/Y');
     }
-
-    public static function formatDateEn(string $date)
-    {
-        return implode('-', array_reverse(explode('/', $date)));
-    }
 }

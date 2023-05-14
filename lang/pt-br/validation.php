@@ -212,5 +212,7 @@ return [
         'updated_at'               => 'atualizado em',
         'username'                 => 'usuário',
         'year'                     => 'ano',
+        'contato'                  => 'telefone',
+        'data_nascimento'          => 'data de nascimento'
     ],
 ];

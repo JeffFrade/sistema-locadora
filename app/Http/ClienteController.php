@@ -28,12 +28,16 @@ class ClienteController extends Controller
 
     public function create()
     {
-
+        return view('cliente.create');
     }
 
     public function store(Request $request)
     {
+        $params = $this->toValidate($request);
+        $this->clienteService->store($params);
 
+        return redirect(route('dashboard.clientes.index'))
+        ->with('message', 'Cliente cadastrado com sucesso!');
     }
 
     public function edit(int $id)
@@ -72,7 +76,6 @@ class ClienteController extends Controller
     {
         $request['cpf'] = StringHelper::clearString($request['cpf'] ?? '');
         $request['contato'] = StringHelper::clearString($request['contato'] ?? '');
-        $request['data_nascimento'] = DateHelper::formatDateEn($request['data_nascimento']);
 
         $toValidateArr = [
             'nome' => 'required|max:70',

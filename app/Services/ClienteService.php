@@ -21,6 +21,11 @@ class ClienteService
         return $this->clienteRepository->index($search, $status);
     }
 
+    public function store(array $data)
+    {
+        $this->clienteRepository->create($data);
+    }
+
     public function edit(int $id)
     {
         $cliente = $this->clienteRepository->findFirst('id', $id);

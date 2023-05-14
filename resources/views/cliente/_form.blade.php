@@ -25,7 +25,7 @@
     <div class="col-sm-3">
         <div class="form-group">
             <label for="data_nascimento"><span class="required">*</span> Data de Nascimento:</label>
-            <input type="text" id="data_nascimento" name="data_nascimento" class="form-control data" placeholder="Data de Nascimento" value="{{ old('data_nascimento', DateHelper::formatDateBr($cliente->data_nascimento ?? '')) }}">
+            <input type="date" id="data_nascimento" name="data_nascimento" class="form-control" placeholder="Data de Nascimento" value="{{ old('data_nascimento', $cliente->data_nascimento ?? '') }}">
         </div>
     </div>
 </div>
