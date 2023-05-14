@@ -14,14 +14,14 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-sm-6">
-                            <input type="text" id="brand" name="brand" class="form-control" placeholder="Nome/CPF/Telefone" value="{{ $params['brand'] ?? '' }}">
+                            <input type="text" id="search" name="search" class="form-control" placeholder="Nome/CPF/Telefone" value="{{ $params['search'] ?? '' }}">
                         </div>
 
                         <div class="col-sm-2">
                             <select id="status" name="status" class="form-control">
                                 <option value="" selected="" disabled="">Selecione Uma Opção</option>
-                                <option value="1">Ativo</option>
-                                <option value="0">Inativo</option>
+                                <option value="1" {{ ($params['status'] ?? '') == 1 ? 'selected="selected"' : '' }}>Ativo</option>
+                                <option value="0" {{ ($params['status'] ?? '') == 0 ? 'selected="selected"' : '' }}>Inativo</option>
                             </select>
                         </div>
 
@@ -50,14 +50,26 @@
                             @forelse($clientes as $cliente)
                                 <tr>
                                     <td>{{ $cliente->nome }}</td>
-                                    <td>{{ $cliente->cpf }}</td>
+                                    <td>{{ StringHelper::mask($cliente->cpf, '###.###.###-##') }}</td>
                                     <td>{{ $cliente->contato }}</td>
-                                    <td>{{ $cliente->data_nascimento }}</td>
-                                    <td>{{ $cliente->status }}</td>
+                                    <td>{{ DateHelper::formatDate($cliente->data_nascimento) }}</td>
+                                    <td>
+                                        @if ($cliente->status)
+                                            <div class="badge badge-success label">Ativo</div>
+                                        @else
+                                            <div class="badge badge-danger label">Inativo</div>
+                                        @endif
+                                    </td>
                                     <td style="width: 1%;" nowrap="">
-                                        <a href="{{ route('dashboard.clientes.edit', ['id' => $cliente->id]) }}" class="btn btn-default btn-xs" title="Editar"><i class="fa fa-edit"></i></a>
+                                        @if ($cliente->status)
+                                            <a href="#" class="btn btn-danger btn-xs btn-overlay btn-status" data-id="{{ $cliente->id }}" title="Inativar Cliente"><i class="fa fa-fw fa-times"></i></a>
+                                        @else
+                                            <a href="#" class="btn btn-success btn-xs btn-overlay btn-status" data-id="{{ $cliente->id }}" title="Ativar Cliente"><i class="fa fa-fw fa-check"></i></a>
+                                        @endif
                                         &nbsp;
-                                        <a href="#" class="btn btn-danger btn-xs btn-overlay" data-id="{{ $cliente->id }}" title="Excluir" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i></a>
+                                        <a href="{{ route('dashboard.clientes.edit', ['id' => $cliente->id]) }}" class="btn btn-default btn-xs" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
+                                        &nbsp;
+                                        <a href="#" class="btn btn-danger btn-xs btn-overlay" data-id="{{ $cliente->id }}" title="Excluir" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-fw fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @empty

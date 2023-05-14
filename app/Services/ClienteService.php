@@ -14,6 +14,9 @@ class ClienteService
 
     public function index(array $data = [])
     {
-        return $this->clienteRepository->index();
+        $search = $data['search'] ?? '';
+        $status = $data['status'] ?? null;
+
+        return $this->clienteRepository->index($search, $status);
     }
 }
