@@ -51,7 +51,7 @@
                                 <tr>
                                     <td>{{ $cliente->nome }}</td>
                                     <td>{{ StringHelper::mask($cliente->cpf, '###.###.###-##') }}</td>
-                                    <td>{{ $cliente->contato }}</td>
+                                    <td>{{ StringHelper::maskPhone($cliente->contato) }}</td>
                                     <td>{{ DateHelper::formatDateBr($cliente->data_nascimento) }}</td>
                                     <td>
                                         @if ($cliente->status)

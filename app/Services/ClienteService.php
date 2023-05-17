@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Services;
+
 use App\Exceptions\ClienteNotFoundException;
+use App\Helpers\StringHelper;
 use App\Repositories\ClienteRepository;
 
 class ClienteService
@@ -15,7 +17,7 @@ class ClienteService
 
     public function index(array $data = [])
     {
-        $search = $data['search'] ?? '';
+        $search = StringHelper::clearString($data['search'] ?? '');
         $status = $data['status'] ?? null;
 
         return $this->clienteRepository->index($search, $status);

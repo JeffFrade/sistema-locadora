@@ -29,6 +29,17 @@ class StringHelper
         return $masked;
     }
 
+    public static function maskPhone(string $phone)
+    {
+        $maked = self::mask($phone, '(##) ####-####');
+
+        if (strlen($phone) == 11) {
+            $maked = self::mask($phone, '(##) #####-####');
+        }
+
+        return $maked;
+    }
+
     public static function clearString(string $value = '')
     {
         return preg_replace('/\D+/i', '', $value);
