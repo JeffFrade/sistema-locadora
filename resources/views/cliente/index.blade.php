@@ -55,18 +55,12 @@
                                     <td>{{ DateHelper::formatDateBr($cliente->data_nascimento) }}</td>
                                     <td>
                                         @if ($cliente->status)
-                                            <div class="badge badge-success label">Ativo</div>
+                                            <div class="badge badge-success label btn-status" data-id={{ $cliente->id }} title="Trocar Status">Ativo</div>
                                         @else
-                                            <div class="badge badge-danger label">Inativo</div>
+                                            <div class="badge badge-danger label btn-status" data-id={{ $cliente->id }} title="Trocar Status">Inativo</div>
                                         @endif
                                     </td>
                                     <td style="width: 1%;" nowrap="">
-                                        @if ($cliente->status)
-                                            <a href="#" class="btn btn-danger btn-xs btn-overlay btn-status" data-id="{{ $cliente->id }}" title="Inativar Cliente"><i class="fa fa-fw fa-times"></i></a>
-                                        @else
-                                            <a href="#" class="btn btn-success btn-xs btn-overlay btn-status" data-id="{{ $cliente->id }}" title="Ativar Cliente"><i class="fa fa-fw fa-check"></i></a>
-                                        @endif
-                                        &nbsp;
                                         <a href="{{ route('dashboard.clientes.edit', ['id' => $cliente->id]) }}" class="btn btn-default btn-xs" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
                                         &nbsp;
                                         <a href="#" class="btn btn-danger btn-xs btn-overlay" data-id="{{ $cliente->id }}" title="Excluir" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-fw fa-trash"></i></a>
@@ -98,5 +92,36 @@
     <script src="{{ asset('js/delete-modal.js') }}"></script>
     <script type="text/javascript">
         deleteModal('clientes/delete/');
+
+        $('.btn-status').on('click', function (e) {
+            e.preventDefault();
+            $('.overlay').removeClass('overlay-hidden');
+
+            let id = $(this).data('id');
+
+            $.ajax({
+                contentType: 'application/x-www-form-urlencoded',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                },
+                method: 'PUT',
+                url: `clientes/status/${id}`,
+                timeout: 0,
+                success: function (response) {
+                    $.notify({message: response.message}, {type: 'success'});
+                    setTimeout(function () {
+                        location.reload();
+                    }, 2000);
+                },
+                error: function (err) {
+                    let error = err.responseJSON.error;
+                    $.notify({message: error.message}, {type: 'danger'});
+                    console.error(error);
+                    setTimeout(function () {
+                        location.reload();
+                    }, 2000);
+                }
+            });
+        });
     </script>
 @stop

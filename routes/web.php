@@ -28,5 +28,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::get('/edit/{id}', 'ClienteController@edit')->name('dashboard.clientes.edit');
         Route::put('/update/{id}', 'ClienteController@update')->name('dashboard.clientes.update');
         Route::delete('/delete/{id}', 'ClienteController@delete')->name('dashboard.clientes.delete');
+        Route::put('/status/{id}', 'ClienteController@status')->name('dashboard.clientes.status');
     });
 });

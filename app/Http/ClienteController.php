@@ -72,6 +72,17 @@ class ClienteController extends Controller
         }
     }
 
+    public function status(int $id)
+    {
+        try {
+            $this->clienteService->status($id);
+
+            return $this->successResponse('Status do cliente alterado com sucesso!');
+        } catch (ClienteNotFoundException $e) {
+            return $this->errorResponse($e);
+        }
+    }
+
     protected function toValidate(Request $request, ?int $id = null)
     {
         $request['cpf'] = StringHelper::clearString($request['cpf'] ?? '');

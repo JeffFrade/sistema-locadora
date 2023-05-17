@@ -50,4 +50,11 @@ class ClienteService
         $this->edit($id);
         $this->clienteRepository->delete($id);
     }
+
+    public function status(int $id)
+    {
+        $cliente = $this->edit($id);
+        $cliente->status = !$cliente->status;
+        $this->clienteRepository->update($cliente->toArray(), $id);
+    }
 }
