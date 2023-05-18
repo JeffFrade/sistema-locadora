@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Models;
 
-use Database\Factories\ClienteFactory;
+use Database\Factories\CategoriaFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -18,6 +18,6 @@ class Categoria extends Model
 
     public static function newFactory()
     {
-        return ClienteFactory::new();
+        return CategoriaFactory::new();
     }
 }
