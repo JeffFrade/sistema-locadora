@@ -30,4 +30,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         Route::delete('/delete/{id}', 'ClienteController@delete')->name('dashboard.clientes.delete');
         Route::put('/status/{id}', 'ClienteController@status')->name('dashboard.clientes.status');
     });
+    Route::group(['prefix' => 'categorias'], function () {
+        Route::get('/', 'CategoriaController@index')->name('dashboard.categorias.index');
+        Route::get('/create', 'CategoriaController@create')->name('dashboard.categorias.create');
+        Route::post('/store', 'CategoriaController@store')->name('dashboard.categorias.store');
+        Route::get('/edit/{id}', 'CategoriaController@edit')->name('dashboard.categorias.edit');
+        Route::put('/update/{id}', 'CategoriaController@update')->name('dashboard.categorias.update');
+        Route::delete('/delete/{id}', 'CategoriaController@delete')->name('dashboard.categorias.delete');
+    });
 });

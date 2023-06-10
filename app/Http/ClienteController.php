@@ -22,7 +22,6 @@ class ClienteController extends Controller
     {
         $params = $request->all();
         $clientes = $this->clienteService->index($params);
-
         return view('cliente.index', compact('clientes', 'params'));
     }
 

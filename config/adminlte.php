@@ -319,6 +319,12 @@ return [
             'icon'        => 'fas fa-fw fa-users',
             'active'      => ['/dashboard/clientes', '/dashboard/clientes*', '/dashboard/clientes?*']
         ],
+        [
+            'text'        => 'Categorias',
+            'url'         => 'dashboard/categorias',
+            'icon'        => 'fas fa-fw fa-list-alt',
+            'active'      => ['/dashboard/categorias', '/dashboard/categorias*', '/dashboard/categorias?*']
+        ],
         /*[
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
