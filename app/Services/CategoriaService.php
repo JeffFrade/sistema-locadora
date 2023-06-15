@@ -16,7 +16,7 @@ class CategoriaService
 
     public function index(array $data = [])
     {
-        $search = $data['search'];
+        $search = $data['search'] ?? '';
 
         return $this->categoriaRepository->index($search);
     }
