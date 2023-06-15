@@ -36,7 +36,7 @@ class ClienteController extends Controller
         $this->clienteService->store($params);
 
         return redirect(route('dashboard.clientes.index'))
-        ->with('message', 'Cliente cadastrado com sucesso!');
+            ->with('message', 'Cliente cadastrado com sucesso!');
     }
 
     public function edit(int $id)

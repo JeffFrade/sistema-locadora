@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Exceptions\CategoriaNotFoundException;
-use App\Helpers\StringHelper;
 use App\Repositories\CategoriaRepository;
 
 class CategoriaService
@@ -17,7 +16,7 @@ class CategoriaService
 
     public function index(array $data = [])
     {
-        $search = StringHelper::clearString($data['search'] ?? '');
+        $search = $data['search'];
 
         return $this->categoriaRepository->index($search);
     }

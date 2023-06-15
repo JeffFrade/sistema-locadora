@@ -45,7 +45,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="6">Não há dados</td>
+                                    <td colspan="2">Não há dados</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -69,36 +69,5 @@
     <script src="{{ asset('js/delete-modal.js') }}"></script>
     <script type="text/javascript">
         deleteModal('categorias/delete/');
-
-        $('.btn-status').on('click', function (e) {
-            e.preventDefault();
-            $('.overlay').removeClass('overlay-hidden');
-
-            let id = $(this).data('id');
-
-            $.ajax({
-                contentType: 'application/x-www-form-urlencoded',
-                data: {
-                    _token: $('meta[name="csrf-token"]').attr('content'),
-                },
-                method: 'PUT',
-                url: `clientes/status/${id}`,
-                timeout: 0,
-                success: function (response) {
-                    $.notify({message: response.message}, {type: 'success'});
-                    setTimeout(function () {
-                        location.reload();
-                    }, 2000);
-                },
-                error: function (err) {
-                    let error = err.responseJSON.error;
-                    $.notify({message: error.message}, {type: 'danger'});
-                    console.error(error);
-                    setTimeout(function () {
-                        location.reload();
-                    }, 2000);
-                }
-            });
-        });
     </script>
 @stop

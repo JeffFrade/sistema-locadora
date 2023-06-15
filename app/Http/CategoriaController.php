@@ -3,9 +3,6 @@
 namespace App\Http;
 
 use App\Core\Support\Controller;
-use App\Exceptions\ClienteNotFoundException;
-use App\Helpers\DateHelper;
-use App\Helpers\StringHelper;
 use App\Services\CategoriaService;
 use Illuminate\Http\Request;
 
@@ -36,7 +33,7 @@ class CategoriaController extends Controller
         $this->categoriaService->store($params);
 
         return redirect(route('dashboard.categorias.index'))
-        ->with('message', 'Categoria cadastrada com sucesso!');
+            ->with('message', 'Categoria cadastrada com sucesso!');
     }
 
     // public function edit(int $id)
@@ -86,7 +83,7 @@ class CategoriaController extends Controller
     {
 
         $toValidateArr = [
-            'categoria' => 'required|max:70'
+            'categoria' => 'required|max:50'
         ];
 
         return $this->validate($request, $toValidateArr);
