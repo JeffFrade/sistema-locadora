@@ -42,6 +42,10 @@ class StringHelper
 
     public static function clearString(string $value = '')
     {
-        return preg_replace('/\D+/i', '', $value);
+        if (preg_match('/\d+/i', $value)) {
+            return preg_replace('/\D+/i', '', $value);
+        }
+
+        return $value;
     }
 }
