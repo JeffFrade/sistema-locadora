@@ -4,7 +4,6 @@ namespace App\Http;
 
 use App\Core\Support\Controller;
 use App\Exceptions\ClienteNotFoundException;
-use App\Helpers\DateHelper;
 use App\Helpers\StringHelper;
 use App\Services\ClienteService;
 use Illuminate\Http\Request;

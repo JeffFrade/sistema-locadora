@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Core\Support\Controller;
 use App\Services\CategoriaService;
 use Illuminate\Http\Request;
+use App\Exceptions\CategoriaNotFoundException;
 
 class CategoriaController extends Controller
 {
@@ -36,48 +37,37 @@ class CategoriaController extends Controller
             ->with('message', 'Categoria cadastrada com sucesso!');
     }
 
-    // public function edit(int $id)
-    // {
-    //     $cliente = $this->clienteService->edit($id);
+    public function edit(int $id)
+    {
+        $categoria = $this->categoriaService->edit($id);
 
-    //     return view('cliente.edit', compact('cliente'));
-    // }
+        return view('categoria.edit', compact('categoria'));
+    }
 
-    // public function update(Request $request, int $id)
-    // {
-    //     try {
-    //         $params = $this->toValidate($request, $id);
-    //         $this->clienteService->update($params, $id);
+    public function update(Request $request, int $id)
+    {
+        try {
+            $params = $this->toValidate($request, $id);
+            $this->categoriaService->update($params, $id);
 
-    //         return redirect(route('dashboard.clientes.index'))
-    //             ->with('message', 'Cliente editado com sucesso!');
-    //     } catch (ClienteNotFoundException $e) {
-    //         return redirect(route('dashboard.clientes.index'))
-    //             ->with('error', $e->getMessage());
-    //     }
-    // }
+            return redirect(route('dashboard.categorias.index'))
+                ->with('message', 'Categoria editada com sucesso!');
+        } catch (CategoriaNotFoundException $e) {
+            return redirect(route('dashboard.categorias.index'))
+                ->with('error', $e->getMessage());
+        }
+    }
 
-    // public function delete(int $id)
-    // {
-    //     try {
-    //         $this->clienteService->delete($id);
+    public function delete(int $id)
+    {
+        try {
+            $this->categoriaService->delete($id);
 
-    //         return $this->successResponse('Cliente excluído com sucesso!');
-    //     } catch (ClienteNotFoundException $e) {
-    //         return $this->errorResponse($e);
-    //     }
-    // }
-
-    // public function status(int $id)
-    // {
-    //     try {
-    //         $this->clienteService->status($id);
-
-    //         return $this->successResponse('Status do cliente alterado com sucesso!');
-    //     } catch (ClienteNotFoundException $e) {
-    //         return $this->errorResponse($e);
-    //     }
-    // }
+            return $this->successResponse('Categoria excluída com sucesso!');
+        } catch (CategoriaNotFoundException $e) {
+            return $this->errorResponse($e);
+        }
+    }
 
     protected function toValidate(Request $request, ?int $id = null)
     {
