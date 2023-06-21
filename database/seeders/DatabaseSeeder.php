@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
         \App\Repositories\Models\User::factory()->create();
         \App\Repositories\Models\Cliente::factory(250)->create();
         $this->call(CategoriaSeeder::class);
+        \App\Repositories\Models\Filme::factory(2000)->create();
     }
 }
