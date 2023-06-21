@@ -4,7 +4,6 @@ namespace App\Http;
 
 use App\Core\Support\Controller;
 use App\Exceptions\ClienteNotFoundException;
-use App\Helpers\DateHelper;
 use App\Helpers\StringHelper;
 use App\Services\ClienteService;
 use Illuminate\Http\Request;
@@ -22,7 +21,6 @@ class ClienteController extends Controller
     {
         $params = $request->all();
         $clientes = $this->clienteService->index($params);
-
         return view('cliente.index', compact('clientes', 'params'));
     }
 
@@ -37,7 +35,7 @@ class ClienteController extends Controller
         $this->clienteService->store($params);
 
         return redirect(route('dashboard.clientes.index'))
-        ->with('message', 'Cliente cadastrado com sucesso!');
+            ->with('message', 'Cliente cadastrado com sucesso!');
     }
 
     public function edit(int $id)

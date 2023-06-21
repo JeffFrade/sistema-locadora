@@ -11,4 +11,15 @@ class CategoriaRepository extends AbstractRepository
     {
         $this->model = new Categoria();
     }
+
+    public function index(string $search = '')
+    {
+        $model = $this->model;
+
+        if (!empty($search)) {
+            $model = $model->where('categoria', 'LIKE', '%' . $search . '%');
+        }
+
+        return $model->simplePaginate();
+    }
 }
