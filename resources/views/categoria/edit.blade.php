@@ -31,8 +31,3 @@
         </div>
     </div>
 @stop
-
-@section('js')
-    <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
-    <script src="{{ asset('js/masks.js') }}"></script>
-@stop

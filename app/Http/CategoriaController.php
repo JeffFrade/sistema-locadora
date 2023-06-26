@@ -6,6 +6,7 @@ use App\Core\Support\Controller;
 use App\Services\CategoriaService;
 use Illuminate\Http\Request;
 use App\Exceptions\CategoriaNotFoundException;
+use PhpParser\Node\Stmt\TryCatch;
 
 class CategoriaController extends Controller
 {
@@ -39,9 +40,15 @@ class CategoriaController extends Controller
 
     public function edit(int $id)
     {
-        $categoria = $this->categoriaService->edit($id);
+        try {
+            $categoria = $this->categoriaService->edit($id);
 
-        return view('categoria.edit', compact('categoria'));
+            return view('categoria.edit', compact('categoria'));
+        } catch (CategoriaNotFoundException $e) {
+            return redirect(route('dashboard.categorias.index'))
+                ->with('error', $e->getMessage());
+        }
+
     }
 
     public function update(Request $request, int $id)
@@ -71,7 +78,6 @@ class CategoriaController extends Controller
 
     protected function toValidate(Request $request, ?int $id = null)
     {
-
         $toValidateArr = [
             'categoria' => 'required|max:50'
         ];
