@@ -325,6 +325,12 @@ return [
             'icon'        => 'fas fa-fw fa-list-alt',
             'active'      => ['/dashboard/categorias', '/dashboard/categorias*', '/dashboard/categorias?*']
         ],
+        [
+            'text'        => 'Filmes',
+            'url'         => 'dashboard/filmes',
+            'icon'        => 'fas fa-fw fa-film',
+            'active'      => ['/dashboard/filmes', '/dashboard/filmes*', '/dashboard/filmes?*']
+        ],
         /*[
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
