@@ -24,7 +24,7 @@ class FilmeController extends Controller
 
         $filmes = $this->filmeService->index($params);
 
-        $categorias = $this->categoriaService->index($params);
+        $categorias = $this->categoriaService->getAll();
 
         return view('filme.index', compact('filmes', 'params', 'categorias'));
     }
