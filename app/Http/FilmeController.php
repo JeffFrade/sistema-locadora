@@ -29,5 +29,31 @@ class FilmeController extends Controller
         return view('filme.index', compact('filmes', 'params', 'categorias'));
     }
 
+    public function create()
+    {
+        return view('filme.create');
+    }
+
+    public function store(Request $request)
+    {
+        $params = $request->all();
+
+        $titulo = $this->toValidate($request);  //valida somente o título
+        $params['titulo'] = $titulo['titulo'];  // devolve o título aos params
+
+        $this->filmeService->store($params);
+
+        return redirect(route('dashboard.filmes.index'))
+            ->with('message', 'Filme cadastrado com sucesso!');
+    }
+
+    protected function toValidate(Request $request)
+    {
+        $toValidateArr = [
+            'titulo' => 'required|max:150',
+        ];
+
+        return $this->validate($request, $toValidateArr);
+    }
 
 }

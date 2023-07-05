@@ -12,9 +12,13 @@ class FilmeRepository extends AbstractRepository
         $this->model = new Filme();
     }
 
-    public function index(string $search = '')
+    public function index(string $search = '', string $lancamento = '')
     {
         $model = $this->model;
+
+        if (!empty($lancamento)) {
+            $model = $model->where('lancamento', $lancamento);
+        }
 
         if (!empty($search)) {
             $model = $model->where('titulo', 'LIKE', '%' . $search . '%');

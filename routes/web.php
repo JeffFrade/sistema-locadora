@@ -41,8 +41,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::group(['prefix' => 'filmes'], function () {
         Route::get('/', 'FilmeController@index')->name('dashboard.filmes.index');
         Route::get('/create', 'FilmeController@create')->name('dashboard.filmes.create');
-        // Route::post('/store', 'CategoriaController@store')->name('dashboard.categorias.store');
-        Route::get('/edit/{id}', 'CategoriaController@edit')->name('dashboard.filmes.edit');
+        Route::post('/store', 'FilmeController@store')->name('dashboard.filmes.store');
+        Route::get('/edit/{id}', 'FilmeController@edit')->name('dashboard.filmes.edit');
         // Route::put('/update/{id}', 'CategoriaController@update')->name('dashboard.categorias.update');
         // Route::delete('/delete/{id}', 'CategoriaController@delete')->name('dashboard.categorias.delete');
     });
