@@ -1,6 +1,8 @@
 <div class="row">
     @include('util.errors')
-
+   @php
+        // dd($filme);
+   @endphp
     <div class="col-sm-12">
         <div class="form-group">
             <label for="categoria"><span class="required">*</span> Nome do Filme:</label>
@@ -18,6 +20,7 @@
                     <option value="8">Histórico</option>
                     <option value="9">Documentário</option>
                     <option value="10">Outros</option>
+                    {{-- <option selected="{{ $filme->id_categoria }}">  </option> --}}
                 </select>
             </div>
             <div class="form-group">

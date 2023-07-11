@@ -27,4 +27,9 @@ class Filme extends Model
     {
         return $this->hasOne(Categoria::class, 'id', 'id_categoria');
     }
+
+    public function anoLancamento()
+    {
+        return $this->lancamento;
+    }
 }

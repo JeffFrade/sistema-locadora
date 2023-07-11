@@ -53,4 +53,9 @@ class CategoriaService
     {
         return $this->categoriaRepository->allNoTrashed();
     }
+
+    public function find($value)
+    {
+        return $this->categoriaRepository->find($value);
+    }
 }

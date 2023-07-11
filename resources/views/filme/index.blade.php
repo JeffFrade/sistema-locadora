@@ -31,6 +31,7 @@
                             <tr>
                                 <th>Filme</th>
                                 <th>Categoria</th>
+                                <th>Ano Lançamento</th>
                             </tr>
                         </thead>
 
@@ -39,6 +40,7 @@
                                 <tr>
                                     <td>{{ $filme->titulo }}</td>
                                     <td>{{ $filme->categoria->categoria ?? '' }}</td>
+                                    <td>{{ $filme->anoLancamento() ?? '' }}
                                     <td style="width: 1%;" nowrap="">
                                         <a href="{{ route('dashboard.filmes.edit', ['id' => $filme->id]) }}" class="btn btn-default btn-xs" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
                                         &nbsp;
