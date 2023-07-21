@@ -20,12 +20,12 @@
                     <option value="8">Histórico</option>
                     <option value="9">Documentário</option>
                     <option value="10">Outros</option>
-                    {{-- <option selected="{{ $filme->id_categoria }}">  </option> --}}
+                    <option value="filme_anterior" selected> {{ old('categoria', $filme->categoria->categoria ?? '') }} </option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="lancamento"><span class="required">*</span> Ano de lançamento:</label>
-                <input type="text" id="lancamento" name="lancamento" class="form-control" placeholder="Ano de Lançamento">
+                <input type="text" id="lancamento" value="{{ old('lancamento', $filme->lancamento ?? '') }}" name="lancamento" class="form-control" placeholder="Ano de Lançamento">
             </div>
         </div>
     </div>

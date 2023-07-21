@@ -50,8 +50,13 @@ class FilmeController extends Controller
 
     public function edit(int $id)
     {
-        $filme = $this->filmeService->edit($id);
-        $categoria = $this->categoriaService->getAll();
+        try {
+            $filme = $this->filmeService->edit($id);
+            $categoria = $this->categoriaService->getAll();
+        } catch (FilmeNotFoundException $e) {
+            return redirect(route('dashboard.filmes.index'))
+                ->with('error', $e->getMessage());
+        }
 
         return view('filme.edit', compact('filme', 'categoria'));
     }
@@ -78,6 +83,18 @@ class FilmeController extends Controller
         } catch (FilmeNotFoundException $e) {
             return redirect(route('dashboard.filmes.index'))
                 ->with('error', $e->getMessage());
+        }
+    }
+
+    public function delete(int $id)
+    {
+        try {
+
+            $this->filmeService->delete($id);
+
+            return $this->successResponse('Filme excluído com sucesso!');
+        } catch (FilmeNotFoundException $e) {
+            return $this->errorResponse($e);
         }
     }
 

@@ -22,7 +22,7 @@ class FilmeFactory extends Factory
             'titulo' => $this->faker->name(),
             'lancamento' => $this->faker->year(),
             'disponivel' => random_int(0, 1),
-            'id_categoria' => random_int(1, 250)
+            'id_categoria' => random_int(1, 10)
         ];
     }
 }
