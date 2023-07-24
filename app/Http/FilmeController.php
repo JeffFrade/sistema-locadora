@@ -51,14 +51,14 @@ class FilmeController extends Controller
     public function edit(int $id)
     {
         try {
-            $filme = $this->filmeService->edit($id);
-            $categoria = $this->categoriaService->getAll();
+            $filmes = $this->filmeService->edit($id);
+            $categorias = $this->categoriaService->getAll();
         } catch (FilmeNotFoundException $e) {
             return redirect(route('dashboard.filmes.index'))
                 ->with('error', $e->getMessage());
         }
 
-        return view('filme.edit', compact('filme', 'categoria'));
+        return view('filme.edit', compact('filmes', 'categorias'));
     }
 
     public function update(Request $request, int $id)

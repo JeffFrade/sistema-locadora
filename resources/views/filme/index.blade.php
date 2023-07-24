@@ -34,13 +34,12 @@
                                 <th>Ano Lançamento</th>
                             </tr>
                         </thead>
-
                         <tbody>
                             @forelse($filmes as $filme)
                                 <tr>
                                     <td>{{ $filme->titulo }}</td>
-                                    <td>{{ $filme->categoria->categoria ?? '' }}</td>
-                                    <td>{{ $filme->anoLancamento() ?? '' }}
+                                    <td>{{ $filme->categoria->categoria }}</td>
+                                    <td>{{ $filme->lancamento }}
                                     <td style="width: 1%;" nowrap="">
                                         <a href="{{ route('dashboard.filmes.edit', ['id' => $filme->id]) }}" class="btn btn-default btn-xs" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
                                         &nbsp;
