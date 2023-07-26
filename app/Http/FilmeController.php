@@ -25,14 +25,14 @@ class FilmeController extends Controller
 
         $filmes = $this->filmeService->index($params);
 
-        $categorias = $this->categoriaService->getAll();
-
-        return view('filme.index', compact('filmes', 'params', 'categorias'));
+        return view('filme.index', compact('filmes', 'params'));
     }
 
     public function create()
     {
-        return view('filme.create');
+        $categorias = $this->categoriaService->getAll();
+
+        return view('filme.create', compact('categorias'));
     }
 
     public function store(Request $request)
@@ -51,14 +51,14 @@ class FilmeController extends Controller
     public function edit(int $id)
     {
         try {
-            $filmes = $this->filmeService->edit($id);
+            $filme = $this->filmeService->edit($id);
             $categorias = $this->categoriaService->getAll();
         } catch (FilmeNotFoundException $e) {
             return redirect(route('dashboard.filmes.index'))
                 ->with('error', $e->getMessage());
         }
 
-        return view('filme.edit', compact('filmes', 'categorias'));
+        return view('filme.edit', compact('filme', 'categorias'));
     }
 
     public function update(Request $request, int $id)
@@ -68,14 +68,7 @@ class FilmeController extends Controller
         $titulo = $this->toValidate($request);
         $params['titulo'] =  $titulo['titulo'];
 
-        $idCategoria = $params['id_categoria'];
-
-        $categoria = $this->categoriaService->find($idCategoria);
-
-        $params['categoria'] = $categoria[0]['categoria'];
-
         try {
-
             $this->filmeService->update($params, $id);
 
             return redirect(route('dashboard.filmes.index'))
