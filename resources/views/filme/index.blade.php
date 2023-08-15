@@ -13,8 +13,20 @@
             <div class="card card-dark">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-sm-9">
-                            <input type="text" id="search" name="search" class="form-control" placeholder="Título do filme" value="{{ $params['search'] ?? '' }}">
+                        <div class="col-sm-7">
+                            <input type="text"
+                                    id="search-titulo"
+                                    name="search-titulo"
+                                    class="form-control"
+                                    placeholder="Título do filme"
+                                    value="{{ $params['search-titulo'] ?? '' }}">
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" id="search-lancamento"
+                                    name="search-lancamento"
+                                    class="form-control"
+                                    placeholder="Ano de Lançamento"
+                                    value="{{ $params['search-lancamento'] ?? '' }}">
                         </div>
 
                         <div class="col-sm-3">
@@ -32,6 +44,7 @@
                                 <th>Filme</th>
                                 <th>Categoria</th>
                                 <th>Ano Lançamento</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,7 +61,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="2">Não há dados</td>
+                                    <td colspan="4">Não há dados</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -56,7 +69,7 @@
                 </div>
 
                 <div class="card-footer">
-                    {!! PaginateHelper::paginateWithParams($filmes, $params) !!}
+                    {!! PaginateHelper::paginateWithParams($filmes) !!}
                 </div>
 
                 @include('util.overlay')

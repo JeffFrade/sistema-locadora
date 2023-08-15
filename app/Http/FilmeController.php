@@ -25,7 +25,7 @@ class FilmeController extends Controller
 
         $filmes = $this->filmeService->index($params);
 
-        return view('filme.index', compact('filmes', 'params'));
+        return view('filme.index', compact('filmes'));
     }
 
     public function create()
@@ -37,10 +37,7 @@ class FilmeController extends Controller
 
     public function store(Request $request)
     {
-        $params = $request->all();
-
-        $titulo = $this->toValidate($request);  //valida somente o título
-        $params['titulo'] = $titulo['titulo'];  // devolve o título aos params
+        $params = $this->toValidate($request);
 
         $this->filmeService->store($params);
 
@@ -53,22 +50,23 @@ class FilmeController extends Controller
         try {
             $filme = $this->filmeService->edit($id);
             $categorias = $this->categoriaService->getAll();
+
+            return view('filme.edit', compact('filme', 'categorias'));
         } catch (FilmeNotFoundException $e) {
             return redirect(route('dashboard.filmes.index'))
                 ->with('error', $e->getMessage());
         }
-
-        return view('filme.edit', compact('filme', 'categorias'));
     }
 
     public function update(Request $request, int $id)
     {
-        $params = $request->all();
-
-        $titulo = $this->toValidate($request);
-        $params['titulo'] =  $titulo['titulo'];
-
         try {
+        // // if($request['lancamento'] < 1895) {
+        //     Melhoria futura: model perguntando se quer cadastrar
+        //     ano menor que 1895 (ano do primeiro filme produzido na história do cinema)
+        // // }
+        $params = $this->toValidate($request);
+
             $this->filmeService->update($params, $id);
 
             return redirect(route('dashboard.filmes.index'))
@@ -82,7 +80,6 @@ class FilmeController extends Controller
     public function delete(int $id)
     {
         try {
-
             $this->filmeService->delete($id);
 
             return $this->successResponse('Filme excluído com sucesso!');
@@ -95,9 +92,11 @@ class FilmeController extends Controller
     {
         $toValidateArr = [
             'titulo' => 'required|max:150',
+            'lancamento' => 'required|digits:4|numeric',
+            'id_categoria' => 'required'
         ];
 
         return $this->validate($request, $toValidateArr);
     }
-
 }
+

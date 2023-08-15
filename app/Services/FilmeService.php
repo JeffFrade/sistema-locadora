@@ -16,9 +16,10 @@ class FilmeService
 
     public function index(array $data = [])
     {
-        $search = $data['search'] ?? '';
+        $search['titulo'] = $data['search-titulo'] ?? '';
+        $search['lancamento'] = $data['search-lancamento'] ?? '';
 
-        return $this->filmeRepository->index($search);
+        return $this->filmeRepository->index($search['titulo'], $search['lancamento']);
     }
 
     public function store(array $data)
