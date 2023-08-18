@@ -48,4 +48,14 @@ class CategoriaService
         $this->edit($id);
         $this->categoriaRepository->delete($id);
     }
+
+    public function getAll()
+    {
+        return $this->categoriaRepository->allNoTrashed();
+    }
+
+    public function find($value)
+    {
+        return $this->categoriaRepository->find($value);
+    }
 }

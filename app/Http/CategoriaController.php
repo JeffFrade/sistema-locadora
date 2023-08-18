@@ -76,7 +76,7 @@ class CategoriaController extends Controller
         }
     }
 
-    protected function toValidate(Request $request, ?int $id = null)
+    protected function toValidate(Request $request)
     {
         $toValidateArr = [
             'categoria' => 'required|max:50'
