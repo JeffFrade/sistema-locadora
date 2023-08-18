@@ -61,11 +61,7 @@ class FilmeController extends Controller
     public function update(Request $request, int $id)
     {
         try {
-        // // if($request['lancamento'] < 1895) {
-        //     Melhoria futura: model perguntando se quer cadastrar
-        //     ano menor que 1895 (ano do primeiro filme produzido na história do cinema)
-        // // }
-        $params = $this->toValidate($request);
+            $params = $this->toValidate($request);
 
             $this->filmeService->update($params, $id);
 
