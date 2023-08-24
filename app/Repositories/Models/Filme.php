@@ -23,9 +23,8 @@ class Filme extends Model
         return FilmeFactory::new();
     }
 
-    public function categoria()
+    public function categorias()
     {
-        return $this->hasOne(Categoria::class, 'id', 'id_categoria');
+        return $this->belongsToMany(Categoria::class);
     }
-
 }

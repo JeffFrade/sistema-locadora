@@ -19,4 +19,9 @@ class Categoria extends Model
     {
         return CategoriaFactory::new();
     }
+
+    public function filmes()
+    {
+        return $this->belongsToMany(Filme::class);
+    }
 }

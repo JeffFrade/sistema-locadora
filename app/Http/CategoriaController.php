@@ -6,7 +6,6 @@ use App\Core\Support\Controller;
 use App\Services\CategoriaService;
 use Illuminate\Http\Request;
 use App\Exceptions\CategoriaNotFoundException;
-use PhpParser\Node\Stmt\TryCatch;
 
 class CategoriaController extends Controller
 {

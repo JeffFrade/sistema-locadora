@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Auth::routes(['register' => false]);
 
+Route::get('/atualizar-categoria-filme', 'CategoriaFilmeController@atualizarCategoriaFilme');
+
 Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard');
     Route::group(['prefix' => 'clientes'], function () {
